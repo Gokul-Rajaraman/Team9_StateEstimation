@@ -4,15 +4,15 @@ This project was built around a sparse corruption recovery setting, where the ma
 
 ## Linear model choices
 
-For the linear experiments, the system was kept deliberately structured. The dynamics matrix was chosen to be stable and tridiagonal so that the open-loop trajectory stayed bounded and the state coupling remained interpretable. Only half of the states were measured directly, using a partial observation matrix of the form \([I\ 0]\). This made the reconstruction problem nontrivial but still manageable, because the unmeasured states had to be inferred through the system dynamics. The input was included in simulation, while the estimation stage focused on recovering the state and corruption from measurements. :contentReference[oaicite:1]{index=1}
+For the linear experiments, the system was kept deliberately structured. The dynamics matrix was chosen to be stable and tridiagonal so that the open-loop trajectory stayed bounded and the state coupling remained interpretable. Only half of the states were measured directly, using a partial observation matrix of the form $[I\ 0]$. This made the reconstruction problem nontrivial but still manageable, because the unmeasured states had to be inferred through the system dynamics. The input was included in simulation, while the estimation stage focused on recovering the state and corruption from measurements. :contentReference[oaicite:1]{index=1}
 
 The corruption model was fixed over a small number of sensors, rather than changing randomly at every time step. This made the corruption behave more like a persistent sensor bias, which is closer to a faulty channel than a one-off spike. That choice also matches the recovery plots, where the estimator is able to isolate the biased sensors only when the regularization is neither too weak nor too strong. 
 
-The linear recovery problem was formulated in batch form with an \(L_1\) penalty on the corruption term. An exact \(L_0\) formulation was not used because it would require combinatorial search over sensor subsets and would not scale well. The \(L_1\) relaxation gave a convex problem that could be solved reliably with standard optimization tools. This was the right tradeoff for the project because the objective was not only accuracy, but also having a method that could be run repeatedly during parameter sweeps.
+The linear recovery problem was formulated in batch form with an $L_1$ penalty on the corruption term. An exact $L_0$ formulation was not used because it would require combinatorial search over sensor subsets and would not scale well. The $L_1$ relaxation gave a convex problem that could be solved reliably with standard optimization tools. This was the right tradeoff for the project because the objective was not only accuracy, but also having a method that could be run repeatedly during parameter sweeps.
 
 ## Why the regularization sweep was central
 
-The regularization parameter \(\lambda\) was treated as the main tuning knob because it directly controls the balance between sparsity and data fit. The plots show a clear U-shaped trend: very small \(\lambda\) under-regularizes and allows corruption to leak into the state estimate, while very large \(\lambda\) over-penalizes the bias term and suppresses valid corruption. The intermediate region gives the best recovery, so the sweep was necessary to identify a sensible operating point instead of fixing \(\lambda\) arbitrarily. 
+The regularization parameter $\lambda$ was treated as the main tuning knob because it directly controls the balance between sparsity and data fit. The plots show a clear U-shaped trend: very small $\lambda$ under-regularizes and allows corruption to leak into the state estimate, while very large $\lambda$ over-penalizes the bias term and suppresses valid corruption. The intermediate region gives the best recovery, so the sweep was necessary to identify a sensible operating point instead of fixing $\lambda$ arbitrarily. 
 
 ## Nonlinear model choices
 
@@ -22,7 +22,7 @@ The same sparse measurement model was retained in the nonlinear case so that the
 
 ## Why OSQP and IPOPT were both used
 
-OSQP was used because it fits the sequential convex programming approach well. The nonlinear dynamics can be linearized around the current iterate, giving a sequence of quadratic subproblems that are computationally efficient to solve. This made OSQP the faster option for repeated sweeps. IPOPT was included as a direct nonlinear benchmark, so the same objective could be tested without relying on repeated linearization. That comparison was useful because it showed that the sparse recovery trend was not solver-specific. Both solvers still produced the same broad U-shaped dependence on \(\lambda\). 
+OSQP was used because it fits the sequential convex programming approach well. The nonlinear dynamics can be linearized around the current iterate, giving a sequence of quadratic subproblems that are computationally efficient to solve. This made OSQP the faster option for repeated sweeps. IPOPT was included as a direct nonlinear benchmark, so the same objective could be tested without relying on repeated linearization. That comparison was useful because it showed that the sparse recovery trend was not solver-specific. Both solvers still produced the same broad U-shaped dependence on $\lambda$. 
 
 ## Why the final plots look the way they do
 

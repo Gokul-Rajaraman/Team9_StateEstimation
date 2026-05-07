@@ -55,7 +55,7 @@ jupyter lab
 Open:
 
 ```text
-Linear System experiments 2.ipynb
+Linear System experiments.ipynb
 ```
 
 Run all cells sequentially.
@@ -84,7 +84,7 @@ Expected outputs:
 Open:
 
 ```text
-nonlinear experiments 1.ipynb
+nonlinear experiments.ipynb
 ```
 
 Run all cells sequentially.

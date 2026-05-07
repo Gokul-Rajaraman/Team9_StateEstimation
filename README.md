@@ -29,23 +29,19 @@ Contains the implementation used for the experiments.
 Recommended structure:
 ```text
 Code/
-├── src/
 ├── notebooks/
 ├── requirements.txt / environment.yml
 └── run_instructions.md
 ```
 
 ### 4_Data_Results/
-Contains the data and outputs used in the project.
+Contains the results from the project.
 Recommended structure:
 ```text
 Data_Results/
-├── input_data/
-├── processed_data/
-├── outputs/
 └── figures/
 ```
-The final plots used in the report should be placed in `figures/`, and important numeric outputs should be placed in `outputs/`.
+
 
 ### 5_Literature/
 Contains 5 to 10 relevant papers used for background study, along with short summaries of each paper.
@@ -68,10 +64,10 @@ REPRODUCE.md
 ```
 
 ## How to Run the Code
-1. Install the required dependencies using `requirements.txt` or `environment.yml`.
-2. Open the notebooks in `3_Code/notebooks/` or run the main script from `3_Code/src/`.
+1. Install the required dependencies using `requirements.txt`.
+2. Open the notebooks in `3_Code`.
 3. Generate the linear and nonlinear experiment outputs.
-4. Saved figures should appear in `4_Data_Results/figures/`.
+4. Saved figures should appear same as `4_Data_Results`.
 
 Example commands:
 ```bash
@@ -87,7 +83,7 @@ python src/main.py
 ```
 
 ## Main Results
-The main results are stored in `4_Data_Results/figures/` and correspond to:
+The main results are stored in `4_Data_Results` and correspond to:
 - Linear recovery error versus regularization
 - Linear recovery error versus process noise
 - Linear recovery error versus measurement noise

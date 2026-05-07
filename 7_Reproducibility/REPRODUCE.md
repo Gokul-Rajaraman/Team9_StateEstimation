@@ -27,8 +27,8 @@ The project contains two sets of experiments:
 Main notebooks used:
 
 ```text
-Linear System experiments 2.ipynb
-nonlinear experiments 1.ipynb
+Linear System experiments.ipynb
+nonlinear experiments.ipynb
 ```
 
 ---
@@ -38,7 +38,7 @@ nonlinear experiments 1.ipynb
 Open and execute:
 
 ```text
-Linear System experiments 2.ipynb
+Linear System experiments.ipynb
 ```
 
 The notebook performs the following steps:
@@ -104,7 +104,7 @@ Expected trend:
 Open and execute:
 
 ```text
-nonlinear experiments 1.ipynb
+nonlinear experiments.ipynb
 ```
 
 The notebook performs the following steps:
